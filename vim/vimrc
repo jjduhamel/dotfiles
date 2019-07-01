@@ -1,0 +1,104 @@
+"
+" General
+"
+set history=500
+
+" Filetype plugins
+filetype plugin on      " Load language specific plugins
+filetype indent on      " Load language specific indentation files
+
+set autoread            " Automatically update a file when it changes externally
+set lazyredraw          " Don't redraw the screen when no necessary
+
+set encoding=utf8       " Use UTF8 (en_US) as the standard encoding
+set fileformats=unix    " Use unix file type
+
+" Disable error bells across the board
+set noerrorbells
+set novisualbell
+
+" Turn off backups
+set nobackup
+set nowb
+set noswapfile
+
+" Leader key useful for mapping keys
+let mapleader=";"
+
+"
+" Spaces and Tabs
+"
+set expandtab           " Use spaces instead of tabs
+set smarttab
+set autoindent          " Automatically indent new lines
+set smartindent
+set wrap                " Wrap long lines
+
+" 1 tab = 4 spaces
+set tabstop=4
+set shiftwidth=4
+
+"
+" User Interface
+"
+set number              " Show line numbers
+set ruler               " Ruler shows the cursor position
+set showcmd             " Show the last command in the bottom right
+set wildmenu            " Wildmenu helps with things like autocompletion
+set showmatch           " Highlight matching brackets when you hover
+set noshowmode          " Don't show the mode
+
+set so=5                " Number of lines above and below cursor when scrolling
+
+" Save and quit shortcuts
+nmap <leader>w :w!<cr>
+nmap <leader>q :q<cr>
+
+" Smart way to move between windows
+map <C-h> <C-W>h
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-l> <C-W>l
+
+" Searching
+set incsearch           " Search in real-time as characters are entered
+set hlsearch            " Highlight matches
+set magic               " Enable regular expression search
+set ignorecase          " Ignore case when searching
+set smartcase
+" Clear highlighted items
+nnoremap <leader>/ :nohlsearch<cr>
+
+" Command Line
+set cmdheight=2
+
+"
+" Plugins
+"
+call plug#begin()
+
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+nmap <leader>f :NERDTreeToggle<cr>
+" Show dotfiles in nerdtree
+let NERDTreeShowHidden=1
+" Close vim if nerdtree is only window
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+Plug 'flazz/vim-colorschemes'
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+let g:airline_theme='bubblegum'
+let g:airline_filetype_overrides = {
+    \ 'nerdtree': [ 'Filesystem', '' ],
+    \ }
+
+call plug#end()
+
+"
+" Colors and Syntax
+"
+syntax on
+colorscheme jellyx
+set background=dark
