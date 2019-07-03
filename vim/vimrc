@@ -77,6 +77,7 @@ set cmdheight=2
 "
 call plug#begin()
 
+" Nerdtree file browser
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 nmap <leader>f :NERDTreeToggle<cr>
@@ -85,14 +86,21 @@ let NERDTreeShowHidden=1
 " Close vim if nerdtree is only window
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" Huge collection of Vim color schemes
 Plug 'flazz/vim-colorschemes'
 
+" Airline status bar
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline_theme='bubblegum'
 let g:airline_filetype_overrides = {
     \ 'nerdtree': [ 'Filesystem', '' ],
     \ }
+
+" Syntax highlighting
+Plug 'sheerun/vim-polyglot'
+let g:javascript_plugin_jsdoc = 1
+let g:jsx_ext_required = 0
 
 call plug#end()
 
