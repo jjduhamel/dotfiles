@@ -11,7 +11,7 @@ set autoread            " Automatically update a file when it changes externally
 set lazyredraw          " Don't redraw the screen when no necessary
 
 set encoding=utf8       " Use UTF8 (en_US) as the standard encoding
-set fileformats=unix    " Use unix file type
+set fileformats=unix,mac,dos    " Use unix file type
 
 " Disable error bells across the board
 set noerrorbells
@@ -26,19 +26,6 @@ set noswapfile
 let mapleader=";"
 
 "
-" Spaces and Tabs
-"
-set expandtab           " Use spaces instead of tabs
-set smarttab
-set autoindent          " Automatically indent new lines
-set smartindent
-set wrap                " Wrap long lines
-
-" 1 tab = 4 spaces
-set tabstop=4
-set shiftwidth=4
-
-"
 " User Interface
 "
 set number              " Show line numbers
@@ -47,8 +34,21 @@ set showcmd             " Show the last command in the bottom right
 set wildmenu            " Wildmenu helps with things like autocompletion
 set showmatch           " Highlight matching brackets when you hover
 set noshowmode          " Don't show the mode
+set hidden              " Keep the current buffer when closing windows
 
 set so=5                " Number of lines above and below cursor when scrolling
+
+"
+" Spaces and Tabs
+"
+set expandtab           " Use spaces instead of tabs
+set smarttab
+set autoindent          " Automatically indent new lines
+set smartindent
+set wrap                " Wrap long lines
+" 1 tab = 4 spaces
+set tabstop=4
+set shiftwidth=4
 
 " Save and quit shortcuts
 nmap <leader>w :w!<cr>
@@ -81,13 +81,12 @@ call plug#begin()
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 nmap <leader>f :NERDTreeToggle<cr>
-" Show dotfiles in nerdtree
-let NERDTreeShowHidden=1
+let NERDTreeShowHidden=1                    " Show dotfiles in nerdtree
 " Close vim if nerdtree is only window
 "autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 Plug 'majutsushi/tagbar'
-nmap <leader>t :TagbarOpen<cr>
+nmap <leader>t :Tagbar<cr>
 
 " Huge collection of Vim color schemes
 Plug 'flazz/vim-colorschemes'
@@ -104,6 +103,10 @@ let g:airline_filetype_overrides = {
 Plug 'sheerun/vim-polyglot'
 let g:javascript_plugin_jsdoc = 1
 let g:jsx_ext_required = 0
+
+" A.vim
+Plug 'vim-scripts/a.vim'
+nmap <leader>a :A<cr>
 
 call plug#end()
 
